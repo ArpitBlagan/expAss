@@ -63,6 +63,7 @@ exports.logOut=asyncHandler(async(req,res)=>{
     res.send("done");
 });
 exports.check=asyncHandler(async(req,res)=>{
+    if(!req.cookies.id){res.send(false);return}
         console.log(req.cookies);
         const token=req.cookies.jwt;
         const data=await userDB.findById(req.cookies.id);
