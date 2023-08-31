@@ -57,7 +57,7 @@ exports.logOut=asyncHandler(async(req,res)=>{
     res.send("done");
 });
 exports.check=asyncHandler(async(req,res)=>{
-    if(req.cookies.id){
+    
         console.log(req.cookies);
         const token=req.cookies.jwt;
         const data=await userDB.findById(req.cookies.id);
@@ -69,6 +69,5 @@ exports.check=asyncHandler(async(req,res)=>{
                 }else{
                     res.status(200).json(data);
                 }});
-            }
-    else{res.send(false);return ;}
+           
 });
