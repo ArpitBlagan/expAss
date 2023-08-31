@@ -52,10 +52,12 @@ exports.login=asyncHandler(async(req,res)=>{
 exports.logOut=asyncHandler(async(req,res)=>{
     res.cookie("jwt","",{
         expires:new Date(0),
-        httpOnly:true
+        httpOnly:true,sameSite: 'none',
+            secure: true,
     });
     res.cookie("id",undefined,{
-        path:"/",
+        path:"/",sameSite: 'none',
+            secure: true,
     });
     console.log("remove the cookie");
     res.send("done");
