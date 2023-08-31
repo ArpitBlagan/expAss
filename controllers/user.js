@@ -38,10 +38,11 @@ exports.login=asyncHandler(async(req,res)=>{
             secure: true, 
         });
         res.cookie("id",user._id,{
+            sameSite: 'none',
+  secure: true, 
         });
         res.status(200).json({
-            id:user._id,sameSite: 'none',
-  secure: true, 
+            id:user._id,
         });
     }
     else{
@@ -64,7 +65,7 @@ exports.check=asyncHandler(async(req,res)=>{
         console.log(req.cookies);
         const token=req.cookies.jwt;
         const data=await userDB.findById(req.cookies.id);
-            console.log("jwt",token);
+            console.log("jwt",token,data);
             if(!token){res.send(false);return;}
             jwt.verify(token,process.env.ACCESS_TOKEN,(err,decoded)=>{
                 if(err){
