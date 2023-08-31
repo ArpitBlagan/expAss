@@ -33,12 +33,15 @@ exports.login=asyncHandler(async(req,res)=>{
         },process.env.ACCESS_TOKEN,{expiresIn:"30m"});
         res.cookie("jwt",token,{
             expires:new  Date(Date.now()+(30*24*60*60*1000)),
-            httpOnly:true
+            httpOnly:true,
+            sameSite: 'none',
+            secure: true, 
         });
         res.cookie("id",user._id,{
         });
         res.status(200).json({
-            id:user._id
+            id:user._id,sameSite: 'none',
+  secure: true, 
         });
     }
     else{
