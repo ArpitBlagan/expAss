@@ -13,8 +13,8 @@ mongoose.connect(process.env.URL,{
 const app=express();
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}))
-app.use(cors({
-    origin:['*','http://localhost:5173'],
+app.use('*',cors({
+    origin:true,
     credentials:true
 }))
 app.use(express.json());
