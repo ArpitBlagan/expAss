@@ -70,4 +70,5 @@ exports.check=asyncHandler(async(req,res)=>{
                     res.status(200).json(data);
                 }});
             }
+    else{res.send(false);return ;}
 });
